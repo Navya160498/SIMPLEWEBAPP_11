@@ -1,3 +1,14 @@
-#!/bin/bash
-yum update -y
-yum install -y httpd
+version: 0.0
+os: linux
+files:
+    - source: /
+    destination: /home/ec2-user/app
+hooks:
+  AfterInstall:
+        - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+        - location: scripts/start_server.sh
+      timeout: 300
+      runas: ec2-user
