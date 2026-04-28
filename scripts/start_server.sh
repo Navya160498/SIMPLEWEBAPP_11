@@ -1,3 +1,4 @@
 #!/bin/bash
-systemctl start httpd
-systemctl enable httpd
+cd /home/ec2-user/app
+node app.js > /dev/null 2>&1 &
+ 
